@@ -1,0 +1,5 @@
+train: ./NoAnotation
+val: ./NoAnotation
+
+nc: 1 # number of classes
+names: ["solder_tip"]
