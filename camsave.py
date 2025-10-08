@@ -18,10 +18,10 @@ while(cap.isOpened()):
 
         # enter キーが押されたら画像を保存
         if cv2.waitKey(1) & 0xFF == 13:  # 13はEnterキー
-            filename = f'yolo_{pic_count}.jpg'
+            filename = f'.CalibData/{pic_count}.jpg'
             cv2.imwrite(filename, frame)
             print(f'Saved {filename}')
-            time.sleep(0.25)  # 連続撮影防止のため少し待つ
+            time.sleep(0.05)  # 連続撮影防止のため少し待つ
             pic_count += 1
 
         # 'q'キーが押されたらループから抜ける
