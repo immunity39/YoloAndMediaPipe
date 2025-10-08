@@ -4,8 +4,8 @@ import glob
 import os
 
 # --- 設定 ---
-CHECKERBOARD = (6, 9)  # 列×行（交点数）
-square_size = 0.018    # 1マスのサイズ [m] (例: 18mm)
+CHECKERBOARD = (4, 6)  # 列×行（交点数）
+square_size = 0.027    # 1マスのサイズ [m]
 
 # --- 3D点の座標系を生成 ---
 objp = np.zeros((CHECKERBOARD[0]*CHECKERBOARD[1], 3), np.float32)
@@ -17,9 +17,9 @@ objpoints = []  # 3D点
 imgpoints = []  # 2D点
 
 # --- キャリブレーション画像読み込み ---
-images = glob.glob('calib_images/*.jpg')
+images = glob.glob('CalibData/*.jpg')
 if len(images) == 0:
-    print("❌ エラー: 'calib_images' フォルダに .jpg 画像がありません。")
+    print("❌ エラー: 'CalibData' フォルダに .jpg 画像がありません。")
     exit()
 
 print(f"🔍 検出対象画像: {len(images)} 枚")
@@ -69,8 +69,7 @@ print("Camera matrix:\n", camera_matrix)
 print("Distortion coefficients:\n", dist_coeffs)
 
 # --- 保存 ---
-os.makedirs("output", exist_ok=True)
-save_path = "output/calibration.yaml"
+save_path = "calibration.yaml"
 fs = cv2.FileStorage(save_path, cv2.FILE_STORAGE_WRITE)
 fs.write("camera_matrix", camera_matrix)
 fs.write("dist_coeff", dist_coeffs)
