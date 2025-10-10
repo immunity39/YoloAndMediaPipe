@@ -1,0 +1,6 @@
+train: dataset/bboxAndkeypoint
+val: dataset/bboxAndkeypoint
+
+nc: 1 # number of classes
+names: ["solder_tip"]
+kpt_shape: [1, 3]
