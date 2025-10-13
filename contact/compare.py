@@ -12,8 +12,8 @@ CAM_ID = 0
 PLANE_ID = 7; PLANE_MARKER_LENGTH = 0.064
 CUBE_IDS = [0,1,2,3]; CUBE_MARKER_LENGTH = 0.0315
 CUBE_WIDTH=0.047; CUBE_DEPTH=0.040
-TIP_OFFSET = np.array([0.0, -0.020, 0.00], dtype=np.float32)
-CONTACT_THRESHOLD = 0.0015
+TIP_OFFSET = np.array([0.0, -0.20, 0.00], dtype=np.float32)
+CONTACT_THRESHOLD = 0.005 # 5 mm
 LOG_PATH = "compare_marker_yolo.csv"
 MAX_HISTORY=300
 MODEL_PATH = "best_kpt.pt"

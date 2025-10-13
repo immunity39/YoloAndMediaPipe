@@ -13,7 +13,7 @@ CAM_ID = 0
 PLANE_ID = 7
 PLANE_MARKER_LENGTH = 0.064
 TIP_PROXY_SCALE = 0.06  # if YOLO keypoint is on handle, this is not used; for tip keypoint it's direct
-CONTACT_THRESHOLD = 0.0015  # m
+CONTACT_THRESHOLD = 0.005 # 5 mm
 LOG_CSV = True
 LOG_PATH = "yolo_tip_log.csv"
 MAX_HISTORY = 300
@@ -126,7 +126,7 @@ def main():
                         kps=None
                 if kps is not None and len(kps)>0:
                     # choose first instance, first keypoint
-                    kp = kps[0][0] if isinstance(kps[0], (list, tuple, np.ndarray)) else kps[0].numpy()[0]
+                    kp = kps[0][0] if isinstance(kps[0], (list, tuple, np.ndarray)) else kps[0].cpu()[0]  # use cpu
                     keypoint_pixel = (float(kp[0]), float(kp[1]))
             # fallback: use bbox center
             if keypoint_pixel is None and hasattr(res, "boxes") and len(res.boxes)>0:
