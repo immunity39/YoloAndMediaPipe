@@ -1,6 +1,10 @@
 import cv2, time, csv, os, math, numpy as np
 from collections import deque
 from cv2 import aruco
+
+# matplotlib backend setting (for some environments)
+import matplotlib
+matplotlib.use('TkAgg')  # OpenGLを使わない安全な描画
 import matplotlib.pyplot as plt
 
 # params (combine previous)
