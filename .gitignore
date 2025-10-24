@@ -207,3 +207,9 @@ marimo/_lsp/
 __marimo__/
 
 CalibData/
+
+# MediaPipe
+# YOLO
+
+datasets/
+programs/hand_CollisionDetect/runs
