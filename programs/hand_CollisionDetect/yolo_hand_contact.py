@@ -7,7 +7,7 @@ from collections import deque
 
 # ========== User params ==========
 CAM_ID = 0
-YOLO_MODEL = "yolo11n-pose.pt"   # or your trained model path that outputs hand keypoint or grip keypoint
+YOLO_MODEL = "yolo11-hand-best.pt"   # or your trained model path that outputs hand keypoint or grip keypoint
 
 # ---------- board marker ---------
 BOARD_MARKER_IDS = [4,5,6,7] # top-left, top-right, bottom-left, bottom-right

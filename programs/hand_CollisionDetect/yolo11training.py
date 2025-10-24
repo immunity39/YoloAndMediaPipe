@@ -9,7 +9,6 @@ def main():
         data="hand-keypoints.yaml",
         epochs=30,
         imgsz=640,
-        batch=8,
         name="yolo11n-hand-pose",
         device='cuda:0'
     )
