@@ -4,7 +4,7 @@ from ultralytics import YOLO
 
 # --------- user params ----------
 CAM_ID = 0
-BACKGROUND_MARKER_IDS = [10,11,12,13]  # paste multiple markers around board
+BACKGROUND_MARKER_IDS = [4,5,6,7]  # paste multiple markers around board
 PLANE_MARKER_LENGTH = 0.064
 CUBE_IDS = [0,1,2,3]
 CUBE_MARKER_LENGTH = 0.0315
