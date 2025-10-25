@@ -7,8 +7,11 @@ def main():
     # Train the model
     results = model.train(
         data="hand-keypoints.yaml",
-        epochs=30,
+        epochs=100,
         imgsz=640,
+        batch=16,
+        patience=20,
+        workers=8,
         name="yolo11n-hand-pose",
         device='cuda:0'
     )
