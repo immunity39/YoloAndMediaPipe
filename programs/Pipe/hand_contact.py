@@ -55,8 +55,6 @@ def main():
     ar_dict = aruco.getPredefinedDictionary(aruco.DICT_4X4_50)
     ar_params = aruco.DetectorParameters()
 
-    print("Starting MediaPipe + ArUco Contact Detection")
-
     while True:
         ret, frame = cap.read()
         if not ret: break
