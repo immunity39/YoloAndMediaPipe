@@ -1,5 +1,0 @@
-train: dataset/SmallBbox
-val: dataset/SmallBbox
-
-nc: 1 # number of classes
-names: ["solder_tip"]
