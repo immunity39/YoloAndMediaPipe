@@ -51,7 +51,7 @@ def main():
     K, dist = load_camera_calibration()
     cap = cv2.VideoCapture(CAM_ID)
     mp_hands = mp.solutions.hands
-    hands = mp_hands.Hands(max_num_hands=1, min_detection_confidence=0.5)
+    hands = mp_hands.Hands(max_num_hands=2, min_detection_confidence=0.5)
     ar_dict = aruco.getPredefinedDictionary(aruco.DICT_4X4_50)
     ar_params = aruco.DetectorParameters()
 
