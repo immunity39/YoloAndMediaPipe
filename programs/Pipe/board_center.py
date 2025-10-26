@@ -9,9 +9,11 @@ import time
 
 # ---- User params ----
 CAM_ID = 0
-BOARD_MARKER_IDS = [4, 5, 6, 7]   # the 4 marker IDs you've placed (any order)
-MARKER_LENGTH = 0.051             # 5.1 cm (m)
-MARKER_SEP = 0.01                 # nominal separation used if needed (m)
+BOARD_MARKER_IDS = [4, 5, 6, 7] # the 4 marker IDs you've placed (any order)
+MARKER_LENGTH = 0.051           # 5.1 cm (m)
+BOARD_WIDTH = 0.252             # nominal board width (m)
+BOARD_HIGHT = 0.191             # nominal board height (m)
+MARKER_SEP = 0.01               # nominal separation used if needed (m)
 ARUCO_DICT = aruco.DICT_4X4_50
 # ---------------------
 
@@ -24,13 +26,24 @@ def load_camera_calibration(path="calibration.yaml"):
     fs.release()
     return K, dist
 
-def build_gridboard(dict_obj, marker_length, marker_sep):
-    board = None
-    try:
-        board = aruco.GridBoard.create(2, 2, marker_length, marker_sep, dict_obj)
-    except AttributeError:
-        print("error www")
-    return board
+def build_board_object_points(marker_length, board_width, board_height):
+    hw = marker_length / 2.0
+    hh = marker_length / 2.0
+    s = marker_length / 2.0
+
+    centers = [
+        np.array([-hw,  hh, 0]), # top-left
+        np.array([ hw,  hh, 0]), # top-right
+        np.array([-hw, -hh, 0]), # bottom-left
+        np.array([ hw, -hh, 0])  # bottom-right
+    ]
+
+    objp = []
+    for c in centers:
+        corners = np.array([[-s, s, 0], [ s, s, 0], [ s,-s, 0], [-s,-s, 0]], dtype=np.float32) + c
+        objp.append(corners)
+
+    return objp
 
 def estimate_plane_from_markers(corners_list, ids_list, K, dist, dict_obj):
     # For each detected marker, estimateSingleMarkers and collect their 4 corner 3D points
@@ -60,7 +73,7 @@ def main():
     K, dist = load_camera_calibration()
     cap = cv2.VideoCapture(CAM_ID)
     dict_obj = aruco.getPredefinedDictionary(ARUCO_DICT)
-    board = build_gridboard(dict_obj, MARKER_LENGTH, MARKER_SEP)
+    board = build_board_object_points(MARKER_LENGTH, BOARD_WIDTH, BOARD_HIGHT)
     print("Board object prepared. Press q to quit.")
 
     while True:
