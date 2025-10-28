@@ -90,14 +90,18 @@ def main():
         plane_ok = False
         center = None
         normal = None
+        retval = 0
+        rvec = None
+        tvec = None
 
-        retval, rvec, tvec = aruco.estimatePoseBoard(corners, ids, board, K, dist, None, None)
-        if retval and retval > 0:
-            plane_ok = True
-            cv2.drawFrameAxes(frame, K, dist, rvec, tvec, AXIS_LEN)
-            T = rvec_tvec_to_transform(rvec, tvec)
-            center = T[:3,3]
-            normal = T[:3,2]
+        if ids is not None and len(ids) > 0:
+            retval, rvec, tvec = aruco.estimatePoseBoard(corners, ids, board, K, dist, None, None)
+            if retval and retval > 0:
+                plane_ok = True
+                cv2.drawFrameAxes(frame, K, dist, rvec, tvec, AXIS_LEN)
+                T = rvec_tvec_to_transform(rvec, tvec)
+                center = T[:3,3]
+                normal = T[:3,2]
 
         if plane_ok:
             # smoothing
