@@ -5,7 +5,7 @@ from ultralytics import YOLO
 
 # ========== User Settings ==========
 CAM_ID = 0
-YOLO_MODEL = "yolo11-hand-best.pt"  # 手のポーズ推定対応モデル
+YOLO_MODEL = "runs/pose/train/weights/best.pt"  # 手のポーズ推定対応モデル
 CONF_THRESHOLD = 0.3
 # ==================================
 

@@ -45,11 +45,6 @@ def make_marker_object_points(x, y, z=0):
     ], dtype=np.float32)
 
 def build_board():
-    """
-    4つのマーカを平面の四隅に配置。
-    配置は:
-    (0,0): top-left, (+X): right, (-Y): down
-    """
     # ボード中心を原点にした座標系に配置
     half_x = MARKER_GAP_X / 2
     half_y = MARKER_GAP_Y / 2
