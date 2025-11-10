@@ -13,9 +13,9 @@ hands = mp_hands.Hands(
 )
 
 # --- FreiHAND評価画像ディレクトリ ---
-image_dir = '/path/to/FreiHAND_pub_v2/evaluation/rgb/'
+image_dir = r'../../dataset/evaluation/rgb/'
 # ステップ2で作成した gt.json をロード (image_id を参照するため)
-gt_json_path = '/path/to/FreiHAND_pub_v2/freihand_eval_coco.json'
+gt_json_path = r'../../dataset/evaluation/freihand_eval_coco.json'
 with open(gt_json_path, 'r') as f:
     gt_data = json.load(f)
 
@@ -94,7 +94,7 @@ for image_info in tqdm(gt_data['images']):
 hands.close()
 
 # --- 結果 (results.json) を保存 ---
-output_results_path = '/path/to/mediapipe_results.json'
+output_results_path = r'./mediapipe_results.json'
 with open(output_results_path, 'w') as f:
     json.dump(coco_results, f, indent=4)
 

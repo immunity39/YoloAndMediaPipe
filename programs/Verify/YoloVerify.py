@@ -2,7 +2,7 @@ from ultralytics import YOLO
 
 # 学習済みのYOLOv11ポーズモデルをロード
 # (例: 'yolov11-n-pose.pt' や独自に学習したモデル)
-model = YOLO('path/to/your/yolov11_hand_pose_model.pt') 
+model = YOLO('best.pt')
 
 # 評価の実行
 # Ultralyticsは、`val`ディレクトリに関連付けられた
@@ -23,7 +23,7 @@ model = YOLO('path/to/your/yolov11_hand_pose_model.pt')
 # .../annotations/ ディレクトリに配置するのが標準的です。
 
 # data='freihand_eval.yaml' を指定して実行
-results = model.val(data='path/to/freihand_eval.yaml', 
+results = model.val(data='../../dataset/freihand_eval.yaml', 
                     split='val',
                     imgsz=224,
                     batch=16)
