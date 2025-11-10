@@ -1,0 +1,14 @@
+# freihand_eval.yaml
+path: /path/to/FreiHAND_pub_v2/ # データセットのベースパス
+val: evaluation/rgb # 評価用画像ディレクトリ
+
+# COCO gt.json のパスを指定 (ultralytics v8+ の場合)
+# 注: この設定方法はYOLOのバージョンによって異なる場合があります
+# 詳細はUltralyticsのドキュメントを確認してください
+
+# キーポイント設定
+kpt_shape: [21, 3] # 21キーポイント, 3次元(x, y, vis)
+
+# クラス
+names:
+    0: hand
