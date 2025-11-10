@@ -4,7 +4,7 @@ import os
 from PIL import Image
 
 # --- FreiHANDデータセットへのパス ---
-base_dir = '/path/to/FreiHAND_pub_v2/'
+base_dir = r'..\..\dataset'
 image_dir = os.path.join(base_dir, 'evaluation', 'rgb')
 anno_xyz_path = os.path.join(base_dir, 'evaluation_xyz.json')
 anno_k_path = os.path.join(base_dir, 'evaluation_K.json')
