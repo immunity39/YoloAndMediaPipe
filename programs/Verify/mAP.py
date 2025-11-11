@@ -3,12 +3,10 @@ from pycocotools.cocoeval import COCOeval
 from ultralytics import YOLO
 
 # --- ステップ2で作成した「正解」アノテーション (gt.json) ---
-gt_json_path = '/path/to/FreiHAND_pub_v2/freihand_eval_coco.json'
-gt_json_path = r''
+gt_json_path = r'freihand_eval_coco.json'
 
 # --- ステップ4で作成した MediaPipe の「推論結果」 (results.json) ---
-dt_json_path = '/path/to/mediapipe_results.json'
-dt_json_path = r''
+dt_json_path = r'mediapipe_results.json'
 
 # --- COCO APIのロード ---
 coco_gt = COCO(gt_json_path)       # 正解データをロード
