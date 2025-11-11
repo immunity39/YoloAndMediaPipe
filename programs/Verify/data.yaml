@@ -1,5 +1,5 @@
 # freihand_eval.yaml
-path: ../../dataset/ # データセットのベースパス
+path: . # データセットのベースパス
 val: evaluation/rgb # 評価用画像ディレクトリ
 
 # COCO gt.json のパスを指定 (ultralytics v8+ の場合)
