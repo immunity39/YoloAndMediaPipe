@@ -1,33 +1,41 @@
 from ultralytics import YOLO
 
-# 学習済みのYOLOv11ポーズモデルをロード
-# (例: 'yolov11-n-pose.pt' や独自に学習したモデル)
-model = YOLO('path/to/your/yolov11_hand_pose_model.pt') 
+# 学習済みのYOLOポーズモデルをロード
+YOLO_MODEL = "runs/pose/train/weights/best.pt"
+model = YOLO(YOLO_MODEL)
 
-# 評価の実行
-# Ultralyticsは、`val`ディレクトリに関連付けられた
-# COCO形式のアノテーションファイル（ステップ2で作成したもの）を探します。
-# data引数には .yaml ファイルを指定するのが一般的です。
-# もし .yaml がうまく機能しない場合、val() の引数を調整する必要があるかもしれません。
-
-# Ultralytics v8+ スタイルの評価（YOLOv11がこれに従うと仮定）
-# ステップ2で作成した gt.json を 'val' と同じ階層（または 'annotations' 内）に置く
-# (例: .../FreiHAND_pub_v2/annotations/freihand_eval_coco.json)
-# そして data.yaml でアノテーションパスを指定する必要があるかもしれません。
-
-# --- UltralyticsがCOCO GT JSONを直接使う方法 ---
-# Ultralytics v8+ では、val() 実行時にアノテーションを自動で探します。
-# data.yaml の設定が重要です。
-# data.yaml の 'path' と 'val' を正しく設定し、
-# COCO JSONファイル (freihand_eval_coco.json) を
-# .../annotations/ ディレクトリに配置するのが標準的です。
-
-# data='freihand_eval.yaml' を指定して実行
-results = model.val(data='path/to/freihand_eval.yaml', 
+results = model.val(data='data.yaml', 
                     split='val',
                     imgsz=224,
                     batch=16)
 
-# 結果の表示
-print("--- YOLOv11 Evaluation Results (mAP OKS) ---")
-print(results.pose) # mAP50-95(P), mAP50(P) などが表示されます
+# --- mAP (OKS) の正しい取得方法 ---
+
+# 1. コンソールにサマリー（表）を表示する (推奨)
+# (results.pose ではなく、results 自体を出力します)
+print(results)
+
+# 2. 特定のmAPスコアを数値として取得する
+map_50_95 = results.pose.map    # mAP(P) @ .50:.95 (COCO標準)
+map_50 = results.pose.map50     # mAP(P) @ .50
+map_75 = results.pose.map75     # mAP(P) @ .75
+
+print("\n--- YOLOv11 Evaluation Results (mAP OKS) ---")
+print(f"mAP(P) @ .50:.95 = {map_50_95}")
+print(f"mAP(P) @ .50      = {map_50}")
+print(f"mAP(P) @ .75      = {map_75}")
+
+# ファイルへの書き出し
+output_results_path = './yolo11_results.txt'
+with open(output_results_path, 'w') as f:
+    f.write("--- YOLOv11 Evaluation Results (mAP OKS) ---\n")
+    f.write(f"mAP(P) @ .50:.95 = {map_50_95}\n")
+    f.write(f"mAP(P) @ .50      = {map_50}\n")
+    f.write(f"mAP(P) @ .75      = {map_75}\n")
+    
+    # BBox (検出) の mAP も取得可能
+    f.write("\n--- YOLOv11 Evaluation Results (mAP BBox) ---\n")
+    f.write(f"mAP(B) @ .50:.95 = {results.box.map}\n")
+    f.write(f"mAP(B) @ .50      = {results.box.map50}\n")
+
+print(f"YOLOv11 mAP results saved to {output_results_path}")

@@ -1,0 +1,8 @@
+--- YOLOv11 Evaluation Results (mAP OKS) ---
+mAP(P) @ .50:.95 = 0.0
+mAP(P) @ .50      = 0.0
+mAP(P) @ .75      = 0.0
+
+--- YOLOv11 Evaluation Results (mAP BBox) ---
+mAP(B) @ .50:.95 = 0.0
+mAP(B) @ .50      = 0.0
