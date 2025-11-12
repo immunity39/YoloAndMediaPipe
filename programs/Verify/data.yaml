@@ -1,10 +1,8 @@
 # freihand_eval.yaml
-path: . # データセットのベースパス
-val: evaluation/rgb # 評価用画像ディレクトリ
+path: evaluation # データセットのベースパス
+val: rgb # 評価用画像ディレクトリ
 
-# COCO gt.json のパスを指定 (ultralytics v8+ の場合)
-# 注: この設定方法はYOLOのバージョンによって異なる場合があります
-# 詳細はUltralyticsのドキュメントを確認してください
+train: rgb # (未使用)
 
 # キーポイント設定
 kpt_shape: [21, 3] # 21キーポイント, 3次元(x, y, vis)
